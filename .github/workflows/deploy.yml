@@ -5,25 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      #add env file to .env.local
-      - name: Set Env Vars on Vercel Project
-        uses: dkershner6/vercel-set-env-action@v1
-        with:
-          token: ${{ secrets.VERCEL_TOKEN }}
-          teamId: ${{ secrets.VERCEL_TEAM_ID }} # optional, without will use personal
-          projectName: nexturl # project name in Vercel
-          envVariableKeys: GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,JWT_SECRET
-        env:
-          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-          TARGET_GOOGLE_CLIENT_ID: preview,development,production # comma delimited, one of [production, preview, development]
-          TYPE_GOOGLE_CLIENT_ID: plain # one of [plain, encrypted]
-          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-          TARGET_GOOGLE_CLIENT_SECRET: preview,development,production
-          TYPE_GOOGLE_CLIENT_SECRET: plain
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          TARGET_JWT_SECRET: preview,development,production
-          TYPE_JWT_SECRET: plain
-          
+      #add env file to .env.local          
       # deploy app to vercel
       - name: deploy site to vercel      
         uses: amondnet/vercel-action@v20
